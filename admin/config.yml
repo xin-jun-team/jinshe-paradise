@@ -176,7 +176,7 @@ collections:
         file: data/site.json
         description: 伺服器名稱、狀態、版本、連結
         fields:
-          - { name: server_name, label: 伺服器名稱, widget: string, default: "天赦天堂" }
+          - { name: server_name, label: 伺服器名稱, widget: string, default: "金赦天堂" }
           - name: server_status
             label: 伺服器狀態
             widget: select
