@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>金赦天堂 開機倒數 方形圖</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Cinzel:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#000; }
+  .sq {
+    position:relative; width:1080px; height:1080px; overflow:hidden;
+    background:
+      radial-gradient(circle at 72% 32%, rgba(232,185,35,0.20) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 120%, rgba(200,134,15,0.14) 0%, transparent 55%),
+      linear-gradient(160deg, #0e0b06 0%, #17130b 50%, #0a0806 100%);
+    font-family:'Noto Serif TC',serif; color:#f2e4bf;
+  }
+  .bg { position:absolute; inset:0; background:url('assets/images/hero-banner.png') center 28%/cover no-repeat; opacity:0.13; filter:brightness(0.85) contrast(1.05); }
+  .grain { position:absolute; inset:0; opacity:0.45; background:repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.12) 3px, rgba(0,0,0,0.12) 4px); }
+  /* 斜金光帶 */
+  .slash { position:absolute; width:160%; height:130px; left:-30%; transform:rotate(-14deg); }
+  .slash--1 { top:214px; background:linear-gradient(90deg, transparent, rgba(232,185,35,0.10), transparent); }
+  .slash--2 { top:706px; height:96px; background:linear-gradient(90deg, transparent, rgba(200,134,15,0.10), transparent); }
+
+  .frame { position:absolute; inset:28px; border:2px solid rgba(232,185,35,0.32); }
+  .corner { position:absolute; width:46px; height:46px; border:3px solid #ffd23f; z-index:5; }
+  .corner.tl{top:18px;left:18px;border-right:0;border-bottom:0} .corner.tr{top:18px;right:18px;border-left:0;border-bottom:0}
+  .corner.bl{bottom:18px;left:18px;border-right:0;border-top:0} .corner.br{bottom:18px;right:18px;border-left:0;border-top:0}
+
+  /* 右上角「明天開機」緞帶 */
+  .ribbon {
+    position:absolute; top:60px; right:-96px; transform:rotate(45deg); z-index:6;
+    background:linear-gradient(135deg,#d64535,#8f2418); color:#fff6d8;
+    font-weight:900; font-size:30px; letter-spacing:0.28em; padding:14px 120px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.5); border-top:2px solid #ffd23f; border-bottom:2px solid #ffd23f;
+    padding-left:calc(0.28em + 120px);
+  }
+
+  .wrap { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; padding:62px 70px 56px; z-index:4; }
+
+  .brand { display:flex; align-items:center; gap:16px; }
+  .brand img { width:78px; height:78px; border-radius:50%; border:2px solid #e8b923; box-shadow:0 0 26px rgba(232,185,35,0.5); }
+  .brand__tx { text-align:left; }
+  .brand__name { font-size:42px; font-weight:900; letter-spacing:0.12em; background:linear-gradient(180deg,#ffe98a,#ffd23f 45%,#c99a24); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .brand__en { font-family:'Cinzel',serif; font-size:15px; letter-spacing:0.42em; color:#c99a24; padding-left:0.42em; }
+
+  .eyebrow { margin-top:30px; font-family:'Cinzel',serif; font-size:24px; letter-spacing:0.4em; color:#ffd23f; padding-left:0.4em; }
+
+  /* 巨型倒數 */
+  .count { display:flex; align-items:baseline; gap:22px; margin-top:6px; }
+  .count__pre { font-family:'Noto Serif TC',serif; font-size:64px; font-weight:900; color:#fff2cc; }
+  .count__num {
+    font-family:'Cinzel',serif; font-weight:900; font-size:300px; line-height:0.8;
+    background:linear-gradient(180deg,#fff6d8 0%,#ffd23f 46%,#b9861a 100%);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+    text-shadow:0 8px 46px rgba(232,185,35,0.4);
+  }
+  .count__day { font-family:'Cinzel',serif; font-size:56px; font-weight:900; color:#e8b923; letter-spacing:0.1em; }
+
+  .tomorrow { margin-top:2px; font-size:74px; font-weight:900; color:#fff2cc; letter-spacing:0.16em; text-shadow:0 0 26px rgba(232,185,35,0.35); padding-left:0.16em; }
+  .tomorrow b { color:#ffd23f; }
+
+  .datebar {
+    margin-top:22px; display:inline-block; padding:14px 46px;
+    background:linear-gradient(135deg,#c0392b,#8f2418); color:#fff6d8;
+    font-size:38px; font-weight:900; letter-spacing:0.16em; padding-left:calc(0.16em + 46px);
+    border:2px solid #ffd23f; clip-path:polygon(5% 0,100% 0,95% 100%,0 100%);
+    box-shadow:0 0 28px rgba(192,57,43,0.5);
+  }
+
+  .chips { display:flex; gap:14px; margin-top:30px; flex-wrap:wrap; justify-content:center; }
+  .chip { font-size:23px; font-weight:700; color:#fff2cc; padding:11px 22px; background:rgba(232,185,35,0.10); border:1px solid #e8b923; letter-spacing:0.05em; }
+  .chip b { color:#ffd23f; }
+
+  /* 底部 QR 列 */
+  .foot { margin-top:auto; width:100%; display:flex; align-items:center; justify-content:center; gap:22px; }
+  .foot__qr { width:120px; height:120px; background:#fff; border:3px solid #ffd23f; padding:7px; box-shadow:0 0 22px rgba(232,185,35,0.45); flex-shrink:0; }
+  .foot__qr img { width:100%; height:100%; display:block; }
+  .foot__tx { text-align:left; }
+  .foot__t { font-size:30px; font-weight:900; color:#fff2cc; }
+  .foot__s { font-size:23px; color:#ffd23f; margin-top:6px; }
+  .foot__u { font-family:'Cinzel',serif; font-size:15px; color:#c9b784; margin-top:8px; letter-spacing:0.04em; }
+</style>
+</head>
+<body>
+  <div class="sq">
+    <div class="bg"></div>
+    <div class="grain"></div>
+    <div class="slash slash--1"></div>
+    <div class="slash slash--2"></div>
+    <div class="frame"></div>
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="ribbon">正式開機</div>
+
+    <div class="wrap">
+      <div class="brand">
+        <img src="assets/images/logo-circle.jpg" alt="金赦天堂">
+        <div class="brand__tx">
+          <div class="brand__name">金赦天堂</div>
+          <div class="brand__en">JIN SHE · LINEAGE</div>
+        </div>
+      </div>
+
+      <div class="eyebrow">GRAND OPEN · 火熱開機中</div>
+      <div class="count">
+        <span class="count__num" style="font-size:230px;">NOW</span>
+      </div>
+      <div class="tomorrow">正式<b>開機</b>！</div>
+
+      <div class="datebar">09/19（六）晚間 20:00 準時開放登入</div>
+
+      <div class="chips">
+        <span class="chip">全新伺服器 · <b>獨創系統</b></span>
+        <span class="chip"><b>無親友</b>　<b>無演員</b></span>
+        <span class="chip">登入預約送 <b>神話變身</b></span>
+      </div>
+
+      <div class="foot">
+        <div class="foot__qr"><img src="assets/images/line-qr.png" alt="LINE QR"></div>
+        <div class="foot__tx">
+          <div class="foot__t">📲 掃碼加官方 LINE</div>
+          <div class="foot__s">立即登入 · 神話變身立領</div>
+          <div class="foot__u">JIN SHE PARADISE · 官網同步預約</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

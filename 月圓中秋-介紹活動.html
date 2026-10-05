@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>月圓之夜享中秋 · 限定介紹活動</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#05060f; }
+  .poster {
+    position:relative; width:1080px; height:1500px; overflow:hidden;
+    background:
+      radial-gradient(circle at 78% 15%, rgba(255,238,190,0.30) 0%, rgba(255,220,140,0.10) 16%, transparent 34%),
+      radial-gradient(ellipse at 50% 8%, rgba(120,90,180,0.22) 0%, transparent 45%),
+      linear-gradient(180deg, #0d1030 0%, #0a0b22 42%, #070512 100%);
+    font-family:'Noto Serif TC',serif; color:#f4ecd0;
+  }
+  /* 月亮 */
+  .moon {
+    position:absolute; top:96px; right:96px; width:220px; height:220px; border-radius:50%;
+    background:radial-gradient(circle at 38% 34%, #fffdf2 0%, #ffefc2 40%, #ffd98a 72%, #e8b85a 100%);
+    box-shadow:0 0 70px 20px rgba(255,224,150,0.5), 0 0 140px 60px rgba(255,210,120,0.25);
+  }
+  .moon::before { content:''; position:absolute; top:52px; left:44px; width:36px; height:36px; border-radius:50%; background:rgba(210,180,120,0.35); box-shadow:70px 30px 0 -6px rgba(210,180,120,0.28), 30px 96px 0 -10px rgba(210,180,120,0.22); }
+  /* 星點 */
+  .star { position:absolute; background:#fff; border-radius:50%; opacity:0.85; }
+  .s1{width:5px;height:5px;top:120px;left:120px}.s2{width:4px;height:4px;top:230px;left:300px}
+  .s3{width:6px;height:6px;top:80px;left:520px;box-shadow:0 0 8px #fff}.s4{width:3px;height:3px;top:340px;left:150px}
+  .s5{width:4px;height:4px;top:180px;left:760px}.s6{width:5px;height:5px;top:420px;left:900px;box-shadow:0 0 8px #fff}
+  /* 底部祥雲金帶 */
+  .clouds { position:absolute; bottom:0; left:0; width:100%; height:220px;
+    background:radial-gradient(ellipse at 50% 120%, rgba(232,185,90,0.28), transparent 62%); }
+
+  .frame { position:absolute; inset:30px; border:2px solid rgba(255,214,120,0.35); }
+  .corner { position:absolute; width:50px; height:50px; border:3px solid #ffd98a; z-index:6; }
+  .corner.tl{top:20px;left:20px;border-right:0;border-bottom:0}.corner.tr{top:20px;right:20px;border-left:0;border-bottom:0}
+  .corner.bl{bottom:20px;left:20px;border-right:0;border-top:0}.corner.br{bottom:20px;right:20px;border-left:0;border-top:0}
+
+  .wrap { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; padding:74px 76px 66px; z-index:5; text-align:center; }
+
+  .brand { display:flex; align-items:center; gap:12px; }
+  .brand img { width:56px; height:56px; border-radius:50%; border:2px solid #ffd98a; box-shadow:0 0 18px rgba(255,214,120,0.5); }
+  .brand__name { font-size:30px; font-weight:900; letter-spacing:0.12em; color:#ffe8b0; }
+
+  .eyebrow { margin-top:44px; font-family:'Cinzel',serif; font-size:22px; letter-spacing:0.42em; color:#ffd98a; padding-left:0.42em; }
+  .title {
+    margin-top:10px; font-size:96px; font-weight:900; letter-spacing:0.06em; line-height:1.1;
+    background:linear-gradient(180deg,#fff6d8,#ffe08a 50%,#e0a94a);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+    text-shadow:0 4px 30px rgba(255,210,120,0.3);
+  }
+  .badge { margin-top:20px; display:inline-block; padding:12px 40px; font-size:34px; font-weight:900; letter-spacing:0.2em;
+    color:#3a1c04; background:linear-gradient(135deg,#ffe8b0,#ffd070 55%,#e6b452); border-radius:60px;
+    box-shadow:0 0 30px rgba(255,214,120,0.5); padding-left:calc(0.2em + 40px); }
+
+  .divider { display:flex; align-items:center; gap:16px; margin:40px 0 8px; width:100%; justify-content:center; }
+  .divider span { height:1px; width:150px; background:linear-gradient(90deg,transparent,#e0a94a); }
+  .divider span:last-child { background:linear-gradient(90deg,#e0a94a,transparent); }
+  .divider i { color:#ffd98a; font-size:24px; }
+
+  .steps { width:100%; margin-top:20px; display:flex; flex-direction:column; gap:16px; }
+  .step { display:flex; align-items:center; gap:20px; text-align:left;
+    background:linear-gradient(135deg, rgba(30,26,60,0.85), rgba(18,16,40,0.85));
+    border:1px solid rgba(255,214,120,0.3); border-left:4px solid #ffd070; padding:20px 26px; }
+  .step__n { flex-shrink:0; width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg,#ffe8b0,#e6b452);
+    color:#3a1c04; font-family:'Cinzel',serif; font-weight:900; font-size:28px; display:flex; align-items:center; justify-content:center; }
+  .step__t { font-size:29px; font-weight:700; color:#f9f0d4; line-height:1.5; }
+  .step__t b { color:#ffe08a; }
+
+  .reward { width:100%; margin-top:24px; padding:30px 26px; text-align:center;
+    background:linear-gradient(135deg, rgba(232,185,90,0.16), rgba(180,120,40,0.08));
+    border:2px solid #ffd070; box-shadow:inset 0 0 40px rgba(255,214,120,0.1); }
+  .reward__lead { font-size:28px; color:#ffe8b0; letter-spacing:0.1em; }
+  .reward__lead b { color:#fff; }
+  .reward__items { margin-top:16px; display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
+  .ri { background:rgba(10,10,26,0.6); border:1px solid rgba(255,214,120,0.35); padding:16px 26px; min-width:270px; }
+  .ri__ic { font-size:40px; }
+  .ri__name { margin-top:6px; font-size:26px; font-weight:900; color:#ffe08a; }
+  .ri__q { font-family:'Cinzel',serif; font-size:30px; font-weight:900; color:#fff; }
+
+  .nolimit { margin-top:22px; display:inline-block; padding:12px 44px; font-size:34px; font-weight:900; letter-spacing:0.14em;
+    color:#0f2a12; background:linear-gradient(135deg,#9be89b,#4fc96a); border-radius:60px; box-shadow:0 0 26px rgba(80,220,120,0.4); padding-left:calc(0.14em + 44px); }
+
+  .warn { margin-top:auto; width:100%; padding:16px 22px; background:rgba(200,60,50,0.14); border:1px solid rgba(255,120,110,0.4);
+    color:#ffb0a8; font-size:24px; font-weight:700; letter-spacing:0.06em; }
+  .warn b { color:#fff; }
+</style>
+</head>
+<body>
+  <div class="poster">
+    <div class="moon"></div>
+    <span class="star s1"></span><span class="star s2"></span><span class="star s3"></span>
+    <span class="star s4"></span><span class="star s5"></span><span class="star s6"></span>
+    <div class="clouds"></div>
+    <div class="frame"></div>
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+
+    <div class="wrap">
+      <div class="eyebrow" style="margin-top:20px;">MID-AUTUMN FESTIVAL</div>
+      <div class="title">月圓之夜<br>享中秋</div>
+      <div class="badge">🌕 限定介紹活動</div>
+
+      <div class="divider"><span></span><i>❖</i><span></span></div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step__n">1</div>
+          <div class="step__t"><b>即日起</b>　介紹好友加入遊戲</div>
+        </div>
+        <div class="step">
+          <div class="step__n">2</div>
+          <div class="step__t">好友於 <b>09/28 維修前</b>　等級練至 <b>58 等</b></div>
+        </div>
+        <div class="step">
+          <div class="step__n">3</div>
+          <div class="step__t">達成後 <b>介紹人 & 好友　兩人同時獲得</b>大禮！</div>
+        </div>
+      </div>
+
+      <div class="reward">
+        <div class="reward__lead">🎁 雙方各得 <b>豐厚好禮</b></div>
+        <div class="reward__items">
+          <div class="ri"><div class="ri__ic">📖</div><div class="ri__name">英雄製作秘笈</div><div class="ri__q">×1</div></div>
+          <div class="ri"><div class="ri__ic">🍢</div><div class="ri__name">烤肉串</div><div class="ri__q">×5,000</div></div>
+        </div>
+        <div style="margin-top:18px;"><span class="nolimit">✦ 無上限領取 ✦</span></div>
+      </div>
+
+      <div class="warn">⚠ 請勿冒名頂替　·　一經查核取消資格並回收獎勵</div>
+    </div>
+  </div>
+</body>
+</html>

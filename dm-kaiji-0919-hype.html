@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>金赦天堂 開機啦 浮誇版</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700;900&family=Noto+Serif+TC:wght@700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#000; }
+  .sq {
+    position:relative; width:1080px; height:1080px; overflow:hidden;
+    background:
+      radial-gradient(circle at 50% 46%, rgba(255,210,63,0.30) 0%, rgba(200,60,30,0.12) 34%, transparent 62%),
+      linear-gradient(160deg, #160a06 0%, #1c1108 50%, #0d0705 100%);
+    font-family:'Noto Sans TC','Noto Serif TC',sans-serif; color:#fff2cc;
+  }
+  .bg { position:absolute; inset:0; background:url('assets/images/hero-banner.png') center 30%/cover no-repeat; opacity:0.10; filter:brightness(0.8); }
+  /* 放射太陽芒 */
+  .rays {
+    position:absolute; width:1500px; height:1500px; left:50%; top:44%; transform:translate(-50%,-50%);
+    background:repeating-conic-gradient(from 0deg at 50% 50%,
+      rgba(255,210,63,0.14) 0deg, rgba(255,210,63,0.14) 5deg,
+      transparent 5deg, transparent 13deg);
+    opacity:0.8;
+  }
+  .glowring { position:absolute; width:760px; height:760px; left:50%; top:44%; transform:translate(-50%,-50%); border-radius:50%; box-shadow:0 0 120px 40px rgba(255,180,40,0.25) inset, 0 0 80px rgba(255,180,40,0.2); }
+
+  /* 彩紙/金幣點點 */
+  .confetti { position:absolute; border-radius:50%; }
+  .c1{width:16px;height:16px;background:#ffd23f;top:140px;left:130px;box-shadow:0 0 12px #ffd23f}
+  .c2{width:12px;height:12px;background:#ff5238;top:220px;left:900px;box-shadow:0 0 10px #ff5238}
+  .c3{width:20px;height:20px;background:#ffe98a;top:80px;left:640px;box-shadow:0 0 14px #ffe98a}
+  .c4{width:10px;height:10px;background:#ffd23f;top:520px;left:60px}
+  .c5{width:14px;height:14px;background:#ff5238;top:560px;left:1010px;box-shadow:0 0 10px #ff5238}
+  .c6{width:12px;height:12px;background:#ffe98a;top:900px;left:150px}
+  .c7{width:16px;height:16px;background:#ffd23f;top:860px;left:940px;box-shadow:0 0 12px #ffd23f}
+  .c8{width:9px;height:9px;background:#fff;top:330px;left:300px}
+  .c9{width:9px;height:9px;background:#fff;top:400px;left:820px}
+
+  .frame { position:absolute; inset:26px; border:3px solid rgba(255,210,63,0.5); box-shadow:0 0 0 2px rgba(192,57,43,0.4) inset; }
+  .corner { position:absolute; width:48px; height:48px; border:4px solid #ffd23f; z-index:6; }
+  .corner.tl{top:16px;left:16px;border-right:0;border-bottom:0}.corner.tr{top:16px;right:16px;border-left:0;border-bottom:0}
+  .corner.bl{bottom:16px;left:16px;border-right:0;border-top:0}.corner.br{bottom:16px;right:16px;border-left:0;border-top:0}
+
+  .wrap { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; padding:50px 60px 48px; z-index:5; text-align:center; }
+
+  .brand { display:flex; align-items:center; gap:14px; }
+  .brand img { width:70px; height:70px; border-radius:50%; border:2px solid #ffd23f; box-shadow:0 0 22px rgba(255,210,63,0.6); }
+  .brand__name { font-family:'Noto Serif TC',serif; font-size:40px; font-weight:900; letter-spacing:0.1em; background:linear-gradient(180deg,#ffe98a,#ffd23f 45%,#c99a24); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+
+  .now { margin-top:18px; display:inline-block; padding:10px 40px; background:linear-gradient(135deg,#ff5238,#c0392b); color:#fff; font-size:44px; font-weight:900; letter-spacing:0.1em; border:3px solid #ffd23f; border-radius:60px; box-shadow:0 0 34px rgba(255,82,56,0.7); transform:rotate(-2deg); }
+  .now b { color:#ffe98a; }
+
+  .boom {
+    margin-top:8px; font-family:'Noto Serif TC',serif; font-weight:900; font-size:172px; line-height:0.92;
+    color:#ffd23f;
+    -webkit-text-stroke:6px #7a1206;
+    text-shadow:0 0 30px rgba(255,180,40,0.8), 0 8px 0 #8f2418, 0 12px 40px rgba(0,0,0,0.6);
+    letter-spacing:0.02em;
+  }
+  .boom em { font-style:normal; color:#fff; -webkit-text-stroke:6px #c0392b; }
+  .excl { font-family:'Cinzel',serif; font-size:120px; font-weight:900; color:#ff5238; -webkit-text-stroke:5px #7a1206; text-shadow:0 6px 0 #8f2418; }
+
+  .sub { margin-top:14px; font-size:40px; font-weight:900; color:#fff2cc; letter-spacing:0.06em; text-shadow:0 2px 12px rgba(0,0,0,0.6); }
+  .sub b { color:#ffd23f; }
+
+  .join {
+    margin-top:26px; display:inline-block; padding:20px 60px;
+    background:linear-gradient(135deg,#ffe98a,#ffd23f 50%,#e8b923);
+    color:#7a1206; font-size:60px; font-weight:900; letter-spacing:0.08em;
+    border-radius:70px; box-shadow:0 0 40px rgba(255,210,63,0.8), 0 8px 0 #a5731a;
+    transform:rotate(-1.5deg);
+  }
+
+  .chips { margin-top:26px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .chip { font-size:23px; font-weight:900; color:#fff2cc; padding:10px 22px; background:rgba(0,0,0,0.35); border:2px solid #ffd23f; border-radius:40px; }
+  .chip b { color:#ffd23f; }
+
+  .foot { margin-top:auto; display:flex; align-items:center; justify-content:center; gap:20px; }
+  .foot__qr { width:118px; height:118px; background:#fff; border:3px solid #ffd23f; padding:7px; box-shadow:0 0 22px rgba(255,210,63,0.6); }
+  .foot__qr img { width:100%; height:100%; display:block; }
+  .foot__tx { text-align:left; }
+  .foot__t { font-size:32px; font-weight:900; color:#fff2cc; }
+  .foot__s { font-size:23px; color:#ffd23f; margin-top:5px; font-weight:700; }
+  .foot__u { font-family:'Cinzel',serif; font-size:14px; color:#c9b784; margin-top:7px; letter-spacing:0.04em; }
+</style>
+</head>
+<body>
+  <div class="sq">
+    <div class="bg"></div>
+    <div class="rays"></div>
+    <div class="glowring"></div>
+    <span class="confetti c1"></span><span class="confetti c2"></span><span class="confetti c3"></span>
+    <span class="confetti c4"></span><span class="confetti c5"></span><span class="confetti c6"></span>
+    <span class="confetti c7"></span><span class="confetti c8"></span><span class="confetti c9"></span>
+    <div class="frame"></div>
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+
+    <div class="wrap">
+      <div class="brand">
+        <img src="assets/images/logo-circle.jpg" alt="金赦天堂">
+        <div class="brand__name">金赦天堂</div>
+      </div>
+
+      <div class="now">⏰ 20:00 <b>就是現在</b></div>
+
+      <div class="boom">開機啦<em>!!!!</em></div>
+
+      <div class="sub">全新伺服器 <b>正式引爆</b> · 神話變身 <b>免費送</b>！</div>
+
+      <div class="join">🎉 等你來 +1 🎉</div>
+
+      <div class="chips">
+        <span class="chip"><b>無親友</b> · <b>無演員</b></span>
+        <span class="chip">公平開局 · <b>先搶先贏</b></span>
+      </div>
+
+      <div class="foot">
+        <div class="foot__qr"><img src="assets/images/line-qr.png" alt="LINE QR"></div>
+        <div class="foot__tx">
+          <div class="foot__t">📲 掃碼加官方 LINE</div>
+          <div class="foot__s">現在登入 · 神話變身立領</div>
+          <div class="foot__u">JIN SHE PARADISE · 官網同步預約</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

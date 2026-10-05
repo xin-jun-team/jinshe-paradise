@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>金赦天堂 開機 DM 09/19</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#000; }
+  .poster {
+    position:relative; width:1080px; height:1440px; overflow:hidden;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 34%, rgba(232,185,35,0.16) 0%, transparent 60%),
+      radial-gradient(ellipse 120% 80% at 50% 120%, rgba(200,134,15,0.12) 0%, transparent 55%),
+      linear-gradient(180deg, #0d0b07 0%, #14110a 45%, #0a0806 100%);
+    font-family:'Noto Serif TC',serif; color:#f2e4bf;
+  }
+  /* 背景橫幅疊圖 */
+  .bg-hero {
+    position:absolute; inset:0;
+    background:url('assets/images/hero-banner.png') center 30%/cover no-repeat;
+    opacity:0.12; filter:contrast(1.05) saturate(1.05) brightness(0.9);
+  }
+  .grain {
+    position:absolute; inset:0; opacity:0.5;
+    background:repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.14) 3px, rgba(0,0,0,0.14) 4px);
+  }
+  /* 金色邊框 */
+  .frame { position:absolute; inset:34px; border:2px solid rgba(232,185,35,0.35); }
+  .frame::before { content:''; position:absolute; inset:8px; border:1px solid rgba(232,185,35,0.18); }
+  .corner { position:absolute; width:54px; height:54px; border:3px solid #e8b923; }
+  .corner.tl { top:22px; left:22px; border-right:0; border-bottom:0; }
+  .corner.tr { top:22px; right:22px; border-left:0; border-bottom:0; }
+  .corner.bl { bottom:22px; left:22px; border-right:0; border-top:0; }
+  .corner.br { bottom:22px; right:22px; border-left:0; border-top:0; }
+
+  .wrap { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; padding:58px 80px 52px; z-index:3; }
+
+  /* 頂部品牌 */
+  .brand { display:flex; flex-direction:column; align-items:center; gap:10px; }
+  .brand img { width:98px; height:98px; border-radius:50%; border:2px solid #e8b923; box-shadow:0 0 34px rgba(232,185,35,0.5); }
+  .brand__name {
+    font-size:56px; font-weight:900; letter-spacing:0.16em;
+    background:linear-gradient(180deg,#ffe98a 0%,#ffd23f 40%,#c99a24 100%);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+    text-shadow:0 2px 20px rgba(232,185,35,0.25);
+  }
+  .brand__en { font-family:'Cinzel',serif; font-size:19px; letter-spacing:0.5em; color:#c99a24; margin-top:-4px; padding-left:0.5em; }
+  .brand__slogan { font-size:22px; letter-spacing:0.35em; color:#e8d8ab; padding-left:0.35em; }
+  .brand__slogan b { color:#ffd23f; }
+
+  .divider { display:flex; align-items:center; gap:14px; margin:20px 0 4px; }
+  .divider span { height:1px; width:130px; background:linear-gradient(90deg,transparent,#c99a24); }
+  .divider span:last-child { background:linear-gradient(90deg,#c99a24,transparent); }
+  .divider .dia { color:#ffd23f; font-size:20px; }
+
+  /* 主視覺日期 */
+  .headline { text-align:center; margin-top:8px; }
+  .headline__pre { font-family:'Cinzel',serif; font-size:22px; letter-spacing:0.42em; color:#ffd23f; margin-bottom:8px; padding-left:0.42em; }
+  .date {
+    font-size:172px; font-weight:900; line-height:0.9; letter-spacing:0.02em;
+    background:linear-gradient(180deg,#fff6d8 0%,#ffd23f 46%,#b9861a 100%);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+    text-shadow:0 6px 40px rgba(232,185,35,0.3);
+  }
+  .date small { font-size:70px; }
+  .time { margin-top:10px; font-size:46px; font-weight:900; color:#fff2cc; letter-spacing:0.14em; }
+  .time b { color:#ffd23f; }
+  .kaiji {
+    display:inline-block; margin-top:22px; padding:12px 44px;
+    background:linear-gradient(135deg,#c0392b,#8f2418); color:#fff6d8;
+    font-size:40px; font-weight:900; letter-spacing:0.28em; padding-left:calc(0.28em + 44px);
+    border:2px solid #ffd23f; box-shadow:0 0 30px rgba(192,57,43,0.5), inset 0 0 20px rgba(0,0,0,0.35);
+    clip-path:polygon(6% 0,100% 0,94% 100%,0 100%);
+  }
+
+  /* 賣點徽章 */
+  .seals { display:flex; gap:34px; margin-top:26px; }
+  .seal {
+    width:134px; height:134px; border-radius:50%;
+    border:3px double #ffd23f; background:radial-gradient(circle at 50% 40%, #1c1913, #0d0b07);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
+    box-shadow:0 0 26px rgba(232,185,35,0.28), inset 0 0 24px rgba(232,185,35,0.08);
+    position:relative;
+  }
+  .seal::before { content:'✦'; position:absolute; top:16px; color:#c99a24; font-size:16px; }
+  .seal__x { font-size:30px; color:#d64535; font-weight:900; line-height:1; }
+  .seal__t { font-size:40px; font-weight:900; color:#fff2cc; letter-spacing:0.1em; }
+  .seal__s { font-size:16px; color:#c9b784; letter-spacing:0.25em; padding-left:0.25em; }
+
+  /* CTA */
+  .cta {
+    margin-top:30px; width:100%; text-align:center;
+    background:linear-gradient(135deg, rgba(232,185,35,0.14), rgba(200,134,15,0.06));
+    border:2px solid #e8b923; border-left:0; border-right:0; padding:24px 20px;
+    box-shadow:inset 0 0 40px rgba(232,185,35,0.08);
+  }
+  .cta__lead { font-size:34px; color:#f2e4bf; letter-spacing:0.14em; }
+  .cta__gift {
+    display:block; margin-top:12px; font-size:64px; font-weight:900; letter-spacing:0.08em;
+    background:linear-gradient(180deg,#fff6d8,#ffd23f 55%,#c99a24);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+    text-shadow:0 0 30px rgba(232,185,35,0.35);
+  }
+  .cta__gift em { font-style:normal; color:#ff5238; -webkit-text-fill-color:#ff5238; }
+
+  .bottom { margin-top:auto; width:100%; }
+  .bottom__slogan { text-align:center; font-size:34px; font-weight:900; color:#ffd23f; letter-spacing:0.16em; margin-bottom:16px; padding-left:0.16em; }
+  .qr-row { display:flex; align-items:center; justify-content:center; gap:26px; }
+  .qr-box { width:132px; height:132px; background:#fff; border:3px solid #ffd23f; padding:8px; box-shadow:0 0 24px rgba(232,185,35,0.45); flex-shrink:0; }
+  .qr-box img { width:100%; height:100%; display:block; }
+  .qr-text { text-align:left; }
+  .qr-text__t { font-size:33px; font-weight:900; color:#fff2cc; letter-spacing:0.05em; }
+  .qr-text__s { font-size:25px; color:#ffd23f; margin-top:8px; letter-spacing:0.08em; }
+  .qr-text__url { font-family:'Cinzel',serif; font-size:17px; color:#c9b784; margin-top:10px; letter-spacing:0.04em; }
+</style>
+</head>
+<body>
+  <div class="poster">
+    <div class="bg-hero"></div>
+    <div class="grain"></div>
+    <div class="frame"></div>
+    <div class="corner tl"></div><div class="corner tr"></div>
+    <div class="corner bl"></div><div class="corner br"></div>
+
+    <div class="wrap">
+      <div class="brand">
+        <img src="assets/images/logo-circle.jpg" alt="金赦天堂">
+        <div class="brand__name">金赦天堂</div>
+        <div class="brand__en">JIN SHE · LINEAGE</div>
+        <div class="brand__slogan">金赦臨世 · <b>赦令天下</b></div>
+      </div>
+
+      <div class="divider"><span></span><i class="dia">◆</i><span></span></div>
+
+      <div class="headline">
+        <div class="headline__pre">GRAND OPEN</div>
+        <div class="date">09<small>/</small>19</div>
+        <div class="time">（六）晚間 <b>20:00</b> 準時開機</div>
+        <div class="kaiji">全新伺服器 · 獨創系統</div>
+      </div>
+
+      <div class="seals">
+        <div class="seal"><span class="seal__x">✕</span><span class="seal__t">親友</span><span class="seal__s">NO INSIDER</span></div>
+        <div class="seal"><span class="seal__x">✕</span><span class="seal__t">演員</span><span class="seal__s">NO ACTOR</span></div>
+      </div>
+
+      <div class="cta">
+        <span class="cta__lead">登入預約　即刻入手</span>
+        <span class="cta__gift">神話變身 <em>免費送</em></span>
+      </div>
+
+      <div class="bottom">
+        <div class="bottom__slogan">公平開局 · 從零起跑</div>
+        <div class="qr-row">
+          <div class="qr-box"><img src="assets/images/line-qr.png" alt="加入官方 LINE"></div>
+          <div class="qr-text">
+            <div class="qr-text__t">📲 手機掃碼 加官方 LINE</div>
+            <div class="qr-text__s">開服預約 · 好禮搶先領</div>
+            <div class="qr-text__url">JIN SHE PARADISE · 官網同步預約</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
