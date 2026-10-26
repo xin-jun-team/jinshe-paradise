@@ -17,7 +17,10 @@
       transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;
     }
     .ev-link:hover { border-color:#c99a24; transform:translateY(-4px); box-shadow:0 8px 24px rgba(232,185,35,.15); }
-    .ev-link__head {
+    .ev-link--ended{opacity:.4;filter:grayscale(.8);cursor:not-allowed;pointer-events:none;border-color:rgba(232,185,35,.1)}
+.ev-link--ended:hover{transform:none;box-shadow:none}
+.ev-link__tag--ended{background:#1a1710;border:1px solid #4a4332;color:#8a7d5c}
+.ev-link__head {
       padding:16px 20px; border-bottom:1px solid rgba(232,185,35,.22);
       display:flex; align-items:center; gap:12px;
     }
@@ -142,8 +145,11 @@
               '<div class="ev-link__body">' +
                 '<div class="ev-link__desc">' + ev.desc + '</div>' +
                 '<div class="ev-link__date">' + (ev.date_label || '') + '</div>' +
-                (ev.link ? '<div class="ev-link__arrow">' + linkText + '</div>' : (ev.status ? '<div class="ev-link__arrow" style="color:#a89468;">' + ev.status + '</div>' : '')) +
+                (ev.link && !ev.ended ? '<div class="ev-link__arrow">' + linkText + '</div>' : (ev.status ? '<div class="ev-link__arrow" style="color:#a89468;">' + ev.status + '</div>' : '')) +
               '</div>';
+            if (ev.ended) {
+              return '<div class="ev-link ev-link--ended" aria-disabled="true">' + inner + '</div>';
+            }
             if (ev.link) {
               return '<a href="' + ev.link + '" class="ev-link">' + inner + '</a>';
             } else {
